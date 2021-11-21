@@ -13,12 +13,12 @@ class DbService
     public function update($em, $currencyRepository, $data){
         foreach ($data as $curr) {
             if($dbCurrency = DbService::get($currencyRepository, $curr['code'])){
-                $dbCurrency->setExchangeRate($curr['mid']);
+                $dbCurrency->setExchangeRate(round($curr['mid'], 2));
             }else{
                 $dbCurrency = new Currency();
                 $dbCurrency->setName($curr['currency']);
                 $dbCurrency->setCurrencyCode($curr['code']);
-                $dbCurrency->setExchangeRate($curr['mid']);
+                $dbCurrency->setExchangeRate(round($curr['mid'], 2));
             };
             $em->persist($dbCurrency);
             $em->flush();
