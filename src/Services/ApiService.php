@@ -6,9 +6,14 @@ use Symfony\Component\HttpClient\HttpClient;
 
 class ApiService
 {
+    private $apiUrl;
+
+    public function __construct($apiUrl){
+        $this->apiUrl=$apiUrl;
+    }
     public function getData(){
         $client = HttpClient::create();
-        $response = $client->request('GET', 'http://api.nbp.pl/api/exchangerates/tables/A');
+        $response = $client->request('GET', $this->apiUrl );
 
         return $response->toArray()[0]['rates'];
     }
