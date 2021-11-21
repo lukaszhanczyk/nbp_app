@@ -19,9 +19,6 @@ class AppController extends AbstractController
         $data = $api->getData();
         $em = $this->getDoctrine()->getManager();
         $db->update($em, $currencyRepository,$data);
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/AppController.php',
-        ]);
+        return new Response('Currency Rates are updated');
     }
 }
