@@ -10,6 +10,6 @@ class ApiService
         $client = HttpClient::create();
         $response = $client->request('GET', 'http://api.nbp.pl/api/exchangerates/tables/A');
 
-        return $response->toArray();
+        return $response->toArray()[0]['rates'];
     }
 }

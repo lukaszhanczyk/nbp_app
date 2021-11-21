@@ -17,8 +17,8 @@ class AppController extends AbstractController
     public function index(CurrencyRepository $currencyRepository, ApiService $api, DbService $db): Response
     {
         $data = $api->getData();
-        $currs = $db->get($currencyRepository);
-        dd($currs);
+        $em = $this->getDoctrine()->getManager();
+        $db->update($em, $currencyRepository,$data);
         return $this->json([
             'message' => 'Welcome to your new controller!',
             'path' => 'src/Controller/AppController.php',

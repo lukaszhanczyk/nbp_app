@@ -32,6 +32,7 @@ class Currency
      */
     private $exchange_rate;
 
+
     public function getId(): ?int
     {
         return $this->id;
